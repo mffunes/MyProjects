@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BEE1DFD2-F7D8-4C8A-AEFB-7A83743DB015}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CrimsonHexagon</RootNamespace>
+    <AssemblyName>CrimsonHexagon</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Cassandra, Version=2.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\CassandraCSharpDriver.2.1.5\lib\net40\Cassandra.dll</HintPath>
+    </Reference>
+    <Reference Include="Cassandra.Data">
+      <HintPath>..\..\packages\CassandraCSharpDriver.2.1.5\lib\net40\Cassandra.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Cassandra.Data.Linq">
+      <HintPath>..\..\packages\CassandraCSharpDriver.2.1.5\lib\net40\Cassandra.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Crc32C.NET, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Crc32C.NET.1.0.5.0\lib\net20\Crc32C.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="FeedModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="LZ4">
+      <HintPath>..\..\packages\lz4net.1.0.3.93\lib\net40-client\LZ4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Snappy.NET, Version=1.1.1.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Snappy.NET.1.1.1.8\lib\net20\Snappy.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="SourceApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="SourcesFramework">
+      <HintPath>..\..\..\lib\Tickr.IntegrationTests\FeedManager\SourcesFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client\CrimsonHexagonClient.cs" />
+    <Compile Include="Client\CrimsonHexagonConfiguration.cs" />
+    <Compile Include="Client\CrimsonHexagonFactoryClient.cs" />
+    <Compile Include="Client\ICrimsonHexagonClient.cs" />
+    <Compile Include="Config\CrimsonHexagonMonitorDetailSourceConfig.cs" />
+    <Compile Include="Config\CrimsonHexagonMonitorListSourceConfig.cs" />
+    <Compile Include="Config\CrimsonHexagonSourceType.cs" />
+    <Compile Include="CrimsonHexagonPoller.cs" />
+    <Compile Include="CrimsonHexagonPollerFactory.cs" />
+    <Compile Include="Config\ICrimsonHexagonSourceConfig.cs" />
+    <Compile Include="Model\Authorization\AuthorizationRequest.cs" />
+    <Compile Include="Model\Authorization\AuthorizationResponse.cs" />
+    <Compile Include="Model\CrimsonHexagonBaseRequest.cs" />
+    <Compile Include="Model\CrimsonHexagonItem.cs" />
+    <Compile Include="Model\ICrimsonHexagonResponse.cs" />
+    <Compile Include="Model\Monitor\Category.cs" />
+    <Compile Include="Model\Monitor\Monitor.cs" />
+    <Compile Include="Model\Monitor\MonitorDetailRequest.cs" />
+    <Compile Include="Model\Monitor\MonitorDetailResponse.cs" />
+    <Compile Include="Model\Monitor\MonitorListRequest.cs" />
+    <Compile Include="Model\Monitor\MonitorListResponse.cs" />
+    <Compile Include="Model\Monitor\Tags.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dal\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Sources.Infrastructure\Sources.Infrastructure.csproj">
+      <Project>{1EB5C4F2-4DAD-4F28-B45F-2622BA4EEC76}</Project>
+      <Name>Sources.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CassandraScripts.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

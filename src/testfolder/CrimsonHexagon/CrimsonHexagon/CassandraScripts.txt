@@ -1,0 +1,9 @@
+﻿This are scripts to run on the cql shell o cassandra to create inside the namespace the tables.
+
+Create table CrimsonHexagonItem (
+	id int,
+	description varchar,
+	type varchar,
+	primary key (id)
+	);
+go
